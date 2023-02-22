@@ -8,15 +8,20 @@ require("dotenv").config({path:"./config/.env"});
 //connection db
 require("./config/database").connectToMongoDB();
 
+
+// json parsing
+const bodyParser = require("body-parser");
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
+
 //routes
 const postRoutes = require("./routes/post.routes.js");
 app.use("/",postRoutes)
 
-// json parsing
-const bodyParser = require("body-parser");
-const { urlencoded } = require("express");
-app.use(bodyParser.json());
-app.use(bodyParser,urlencoded({extended: true}))
+
+
+
 
 //server
 app.listen(process.env.PORT,() => {

@@ -14,7 +14,7 @@ module.exports.allPosts = (req,res) => {
 
 //fetch one post
 module.exports.onePost = (req,res) => {
-    if(!Object.isValid(req.params.id)) return res.status(400).send("ID unknow :", req.params.id) 
+    if(!ObjectID.isValid(req.params.id)) return res.status(400).send("ID unknow :", req.params.id) 
 
     postModel.findById(req.params.id,(err,data) =>{
         if(!err) return res.status(200).send(data); else return res.status(400).send("Error to get data : ", err);
