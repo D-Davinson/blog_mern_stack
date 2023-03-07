@@ -5,7 +5,7 @@ const ObjectID = require("mongoose").Types.ObjectID;
 
 
 // fetch every post : post recent at first
-module.exports.allPosts = (req,res) => {
+const allPosts = (req,res) => {
     // docs => Array of Objects
     postModel.find((err,data) => {
         if(!err) return  res.status(200).send(data); else return res.status(400).send("Error to get data : ", err);
@@ -13,7 +13,7 @@ module.exports.allPosts = (req,res) => {
 };
 
 //fetch one post
-module.exports.onePost = (req,res) => {
+const onePost = (req,res) => {
     if(!ObjectID.isValid(req.params.id)) return res.status(400).send("ID unknow :", req.params.id) 
 
     postModel.findById(req.params.id,(err,data) =>{
@@ -22,7 +22,7 @@ module.exports.onePost = (req,res) => {
 };
 
 // search post
-module.exports.searchPost = (req, res) => {
+const searchPost = (req, res) => {
     postModel.find(
         {title:{$regex: req.params.query, $options: "i"}},
         (err,data) => {
@@ -33,7 +33,7 @@ module.exports.searchPost = (req, res) => {
 
 // addPost
 
-module.exports.addPost = async (req,res) => {
+const addPost = async (req,res) => {
     const newPost = new postModel({
         title: req.body.title,
         author: req.body.author,
@@ -47,4 +47,8 @@ module.exports.addPost = async (req,res) => {
     }catch(err){
         return res.status(400).json(err)
     }
+    
 }
+
+
+module.exports = { allPosts , onePost , searchPost , addPost} ;
