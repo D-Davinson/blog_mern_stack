@@ -1,9 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import Nav from '../components/Nav';
 
 const Home = () => {
+  
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() =>{
+    const fetchPosts =  async () => {
+      const {data} =  await axios.get('http://localhost:5500/');
+      setPosts(data);
+    };
+    fetchPosts();
+  })
+
   return (
-    <div>HOME</div>
-  )
-}
+    <div>
+      <Nav/>
+      {posts.map((post) => post.title)}
+    </div>
+  );
+};
 
 export default Home
