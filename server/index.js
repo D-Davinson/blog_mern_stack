@@ -5,7 +5,7 @@ const app = express();
 //cors
 const cors = require("cors");
 const corsOptions= {
-    origin:["htpp://localhost:5173"], // for the front by viteJs
+    origin:["http://localhost:5173"], // for the front by viteJs
     credentials: true,
     allowedHeaders:["sessionId","Content-Type"],
     exposedHeaders: ["sessionId"],

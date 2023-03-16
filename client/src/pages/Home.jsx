@@ -8,7 +8,7 @@ const Home = () => {
 
   useEffect(() =>{
     const fetchPosts =  async () => {
-      const {data} =  await axios.get('http://localhost:5500/');
+      const {data} =  await axios.get("http://localhost:5500/");
       setPosts(data);
     };
     fetchPosts();
@@ -17,7 +17,7 @@ const Home = () => {
   return (
     <div>
       <Nav/>
-      {posts.map((post) => post.title)}
+      {posts.map((posts) => posts.title)}
     </div>
   );
 };
